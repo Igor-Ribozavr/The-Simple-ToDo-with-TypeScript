@@ -1,0 +1,10 @@
+.deleteBtn {
+  background: coral;
+  font-size: 100%;
+  padding: 1em 2em;
+  color: white;
+  border: 0;
+}
+.deleteBtn:hover {
+  background: red;
+}
