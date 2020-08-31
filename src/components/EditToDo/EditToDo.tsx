@@ -3,37 +3,37 @@ import './modalWindow.css';
 import { ToDoProps } from '../AddTodo/ToDoProps';
 
 const EditToDo: React.FC<ToDoProps> = (props) => {
-  const [display, setDisplay] = useState<string>('none');
-  const [info, setInfo] = useState<string>(props.value.title);
+  // const [display, setDisplay] = useState<string>('none');
+  // const [info, setInfo] = useState<string>(props.value.title);
 
-  const modal = document.querySelector('.modal');
+  // const modal = document.querySelector('.modal');
 
-  window.addEventListener('click', (event: MouseEvent) => {
-    if (event.target == modal) {
-      setDisplay('none');
-    }
-  }); 
+  // window.addEventListener('click', (event: MouseEvent) => {
+  //   if (event.target == modal) {
+  //     setDisplay('none');
+  //   }
+  // }); 
 
-  const sendEdit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      await fetch(`https://test.megapolis-it.ru/api/list/${props.value.id}`, {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          title: info,
-        }),
-      });
-      props.setRep(!props.rep);
-    },
-    [info]
-  );
+  // const sendEdit = useCallback(
+  //   async (e) => {
+  //     e.preventDefault();
+  //     await fetch(`https://test.megapolis-it.ru/api/list/${props.value.id}`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         title: info,
+  //       }),
+  //     });
+  //     props.setRep(!props.rep);
+  //   },
+  //   [info]
+  // );
 
   return (
     <>
-      <button
+      {/* <button
         id="modalBtn"
         className="button"
         onClick={() => setDisplay('block')}
@@ -57,7 +57,7 @@ const EditToDo: React.FC<ToDoProps> = (props) => {
             <button className="buttonModal"onClick={() => setDisplay('none')}>Сохранить</button>
           </div>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
