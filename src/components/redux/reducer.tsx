@@ -5,41 +5,53 @@ import {
   EDIT_TODO,
   WorkingDispatchTypes,
   CurrentData,
+  ResponseCreate,
+  ResponseDelete,
+  ResponseEdit,
 } from './actionTypes';
 
 interface DefaultState {
   loading: boolean;
   data?: CurrentData[];
+  creature?: ResponseCreate;
+  delete?: ResponseDelete;
+  edit?: ResponseEdit;
 }
 
 const defaultState: DefaultState = {
   loading: false,
-  data: [],
-}
+  // data: [],
+};
 
-export const reducer = (state: DefaultState = defaultState, action: WorkingDispatchTypes) => {
+export const reducer = (
+  state: DefaultState = defaultState,
+  action: WorkingDispatchTypes
+) => {
   switch (action.type) {
     case RECEIVE_DATA:
       return {
-        // ...state,
-        loading: false,
-        data: action.payload, 
+        ...state,
+        loading: true,
+        data: action.payload,
       };
-    //     case ADD_TODO:
-    //       return {
-    //         ...state,
-    //         creature: [action.payload],
-    //       };
-    //     case DELETE_TODO:
-    //       return {
-    //         ...state,
-    //         delete: [action.payload],
-    //       };
-    //       case EDIT_TODO:
-    //         return {
-    //         ...state,
-    //         edit: [action.payload]
-    //         }
+    case ADD_TODO:
+      return {
+        ...state,
+        loading: true,
+        creature: action.payload,
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        loading: true,
+        delete: action.payload,
+      };
+    case EDIT_TODO:
+      return {
+        ...state,
+        loading: true,
+        edit: action.payload,
+      };
     default:
       return state;
   }

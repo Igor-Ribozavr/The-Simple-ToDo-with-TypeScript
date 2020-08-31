@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { reducer } from './components/redux/reducer';
 
 
-export type Root = ReturnType <typeof reducer>
+export type TypeState = ReturnType <typeof reducer>
 
 
 const store = createStore(reducer,

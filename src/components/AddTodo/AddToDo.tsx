@@ -5,17 +5,18 @@ import DeleteToDo from '../DeleteToDo/DeleteToDo';
 import './AddToDo.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiveData } from '../redux/actions';
-import { Root } from '../../index';
+import { TypeState } from '../../index';
 
 const AddToDo: React.FC = () => {
   const dispatch = useDispatch();
-  const testData = useSelector((state: Root) => state.data);
+  const testData = useSelector((state: TypeState) => state.data);
   
   useEffect(() => {
     dispatch(receiveData());
   }, [dispatch]);
   
   console.log(testData);
+  
   // const [rep, setRep] = useState<boolean>(false);
   // const [title, setTitle] = useState<string>('');
   // const [arr, setArr] = useState<ToDo[]>([]);
