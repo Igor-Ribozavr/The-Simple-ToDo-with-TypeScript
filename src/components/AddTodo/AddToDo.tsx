@@ -47,8 +47,8 @@ const AddToDo: React.FC = () => {
       </form>
       <br />
       {data &&
-        data.map((el) => (
-          <div className="todo-container">
+        data.map((el, i) => (
+          <div key={i} className="todo-container">
             <ul className="todoList">
               <div className="todo">
                 <li key={el.id}>{el.title}</li>
