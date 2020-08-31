@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { ToDo } from './ToDo.model';
 import EditToDo from '../EditToDo/EditToDo';
 import DeleteToDo from '../DeleteToDo/DeleteToDo';
 import './AddToDo.css';
@@ -14,53 +13,20 @@ const AddToDo: React.FC = () => {
   const creature = useSelector((state: TypeState) => state.creature);
   const edit = useSelector((state: TypeState) => state.edit);
   const deleter = useSelector((state: TypeState) => state.deleter);
-  console.log(deleter);
-  
-  
+
   const todoSubmitHandler = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(addToDo(title));
     },
     [title, dispatch]
-    );
-    
-    useEffect(() => {
-      dispatch(receiveData());
-    }, [dispatch, creature, deleter, edit]);
-    
-    
-    
-    const data = useSelector((state: TypeState) => state.data);
-  // const [rep, setRep] = useState<boolean>(false);
+  );
 
-  // const todoSubmitHandler = useCallback(
-  //   async (e) => {
-  //     e.preventDefault();
-  //     await fetch(`https://test.megapolis-it.ru/api/list`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         title: title,
-  //       }),
-  //     });
-  //     setRep(!rep);
-  //   },
-  //   [title]
-  // );
+  useEffect(() => {
+    dispatch(receiveData());
+  }, [dispatch, creature, deleter, edit]);
 
-  // async function data() {
-  //   const response = await fetch('https://test.megapolis-it.ru/api/list');
-  //   const result = await response.json();
-  //   setArr(result.data);
-  //   setRep(!rep);
-  // }
-
-  // useEffect(() => {
-  //   data();
-  // }, [rep]);
+  const data = useSelector((state: TypeState) => state.data);
 
   return (
     <>
@@ -80,17 +46,18 @@ const AddToDo: React.FC = () => {
         </div>
       </form>
       <br />
-      {data && data.map((el) => (
-        <div className="todo-container">
-          <ul className="todoList">
-            <div className="todo">
-              <li key={el.id}>{el.title}</li>
-              <DeleteToDo  value={el}/> 
-            </div>
-            {/* <EditToDo value={el}/> */}
-          </ul>
-        </div>
-      ))}
+      {data &&
+        data.map((el) => (
+          <div className="todo-container">
+            <ul className="todoList">
+              <div className="todo">
+                <li key={el.id}>{el.title}</li>
+                <DeleteToDo value={el} />
+              </div>
+              <EditToDo value={el} />
+            </ul>
+          </div>
+        ))}
     </>
   );
 };

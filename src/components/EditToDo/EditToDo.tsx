@@ -1,39 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './modalWindow.css';
 import { ToDoProps } from '../AddTodo/ToDoProps';
+import { editToDo } from '../redux/actions';
 
 const EditToDo: React.FC<ToDoProps> = (props) => {
-  // const [display, setDisplay] = useState<string>('none');
-  // const [info, setInfo] = useState<string>(props.value.title);
+  const dispatch = useDispatch();
+  const [info, setInfo] = useState<string>(props.value.title);
 
-  // const modal = document.querySelector('.modal');
+  const sendEdit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(editToDo(props.value.id, info));
+    },
+    [dispatch, props.value.id, info]
+  );
 
-  // window.addEventListener('click', (event: MouseEvent) => {
-  //   if (event.target == modal) {
-  //     setDisplay('none');
-  //   }
-  // }); 
+  const [display, setDisplay] = useState<string>('none');
 
-  // const sendEdit = useCallback(
-  //   async (e) => {
-  //     e.preventDefault();
-  //     await fetch(`https://test.megapolis-it.ru/api/list/${props.value.id}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         title: info,
-  //       }),
-  //     });
-  //     props.setRep(!props.rep);
-  //   },
-  //   [info]
-  // );
+  const modal = document.querySelector('.modal');
+
+  window.addEventListener('click', (event: MouseEvent) => {
+    if (event.target === modal) {
+      setDisplay('none');
+    }
+  });
 
   return (
     <>
-      {/* <button
+      <button
         id="modalBtn"
         className="button"
         onClick={() => setDisplay('block')}
@@ -54,10 +49,12 @@ const EditToDo: React.FC<ToDoProps> = (props) => {
               defaultValue={props.value.title}
               className="inputEdit"
             ></input>
-            <button className="buttonModal"onClick={() => setDisplay('none')}>Сохранить</button>
+            <button className="buttonModal" onClick={() => setDisplay('none')}>
+              Сохранить
+            </button>
           </div>
         </div>
-      </form> */}
+      </form>
     </>
   );
 };

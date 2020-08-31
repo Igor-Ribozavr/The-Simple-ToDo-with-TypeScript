@@ -7,19 +7,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { reducer } from './components/redux/reducer';
 
+export type TypeState = ReturnType<typeof reducer>;
 
-export type TypeState = ReturnType <typeof reducer>
-
-
-const store = createStore(reducer,
-  // { data: [], creature:[], delete:[], edit:[] },
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

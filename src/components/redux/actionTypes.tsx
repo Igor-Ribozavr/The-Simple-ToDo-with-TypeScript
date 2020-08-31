@@ -18,7 +18,7 @@ export type ResponseDelete = {
 };
 export type ResponseEdit = {
   success: boolean;
-  error: string;
+  error: undefined;
 };
 
 interface ReceiveData {

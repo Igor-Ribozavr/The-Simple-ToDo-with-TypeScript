@@ -20,7 +20,6 @@ interface DefaultState {
 
 const defaultState: DefaultState = {
   loading: false,
-  // data: [],
 };
 
 export const reducer = (

@@ -1,4 +1,10 @@
-import { RECEIVE_DATA, ADD_TODO, DELETE_TODO, EDIT_TODO, WorkingDispatchTypes } from './actionTypes';
+import {
+  RECEIVE_DATA,
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  WorkingDispatchTypes,
+} from './actionTypes';
 import { Dispatch } from 'redux';
 
 export const receiveData = () => {
@@ -12,9 +18,7 @@ export const receiveData = () => {
   };
 };
 
-
-
-export const addToDo = (title:string) => {
+export const addToDo = (title: string) => {
   return async (dispatch: Dispatch) => {
     const response = await fetch(`https://test.megapolis-it.ru/api/list`, {
       method: 'POST',
@@ -33,7 +37,7 @@ export const addToDo = (title:string) => {
   };
 };
 
-export const deleteToDo = (id:number) => {
+export const deleteToDo = (id: number) => {
   return async (dispatch: Dispatch) => {
     const response = await fetch(
       `https://test.megapolis-it.ru/api/list/${id}`,
@@ -45,8 +49,7 @@ export const deleteToDo = (id:number) => {
       }
     );
     const result = await response.json();
-    console.log(result);
-    
+
     dispatch({
       type: DELETE_TODO,
       payload: result,
@@ -54,17 +57,20 @@ export const deleteToDo = (id:number) => {
   };
 };
 
-export const editToDo = (title:string, id:number) => {
+export const editToDo = (id: number, title: string) => {
   return async (dispatch: Dispatch) => {
-    const response = await fetch(`https://test.megapolis-it.ru/api/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: title,
-      }),
-    });
+    const response = await fetch(
+      `https://test.megapolis-it.ru/api/list/${id}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: title,
+        }),
+      }
+    );
     const result = await response.json();
     dispatch({
       type: EDIT_TODO,
