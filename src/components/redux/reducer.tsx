@@ -14,7 +14,7 @@ interface DefaultState {
   loading: boolean;
   data?: CurrentData[];
   creature?: ResponseCreate;
-  delete?: ResponseDelete;
+  deleter?: ResponseDelete;
   edit?: ResponseEdit;
 }
 
@@ -44,7 +44,7 @@ export const reducer = (
       return {
         ...state,
         loading: true,
-        delete: action.payload,
+        deleter: action.payload,
       };
     case EDIT_TODO:
       return {

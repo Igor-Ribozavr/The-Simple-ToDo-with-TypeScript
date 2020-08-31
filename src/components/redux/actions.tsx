@@ -45,6 +45,8 @@ export const deleteToDo = (id:number) => {
       }
     );
     const result = await response.json();
+    console.log(result);
+    
     dispatch({
       type: DELETE_TODO,
       payload: result,

@@ -14,7 +14,7 @@ export type ResponseCreate = {
 };
 export type ResponseDelete = {
   success: boolean;
-  error: string;
+  error: undefined;
 };
 export type ResponseEdit = {
   success: boolean;
@@ -23,7 +23,7 @@ export type ResponseEdit = {
 
 interface ReceiveData {
   type: typeof RECEIVE_DATA;
-  payload: CurrentData[];
+  payload: CurrentData[] | undefined;
 }
 
 interface AddToDo {
